@@ -68,7 +68,7 @@ public class Main {
                     boolean viewBookOrCancelValid = false;
                     while (viewBookOrCancelValid==false){
                         FlightService flightService = new FlightService();
-                        System.out.println("Enter 1 to view current flights, Enter 2 to book a new flight, Enter 3 to view your bookings, Enter 4 to a cancel a flight: ");
+                        System.out.println("Enter 1 to view current flights, Enter 2 to book a new flight, Enter 3 to view your bookings, Enter 4 to a cancel a flight, Enter 5 to quit the program: ");
 
                         String viewBookOrCancel = scanner.nextLine();
                         switch (viewBookOrCancel){
@@ -84,7 +84,8 @@ public class Main {
 
                                 flightService.bookFlight(flightService.findFlightByNum(flightNum, airport), customer);
                                 //when the user selects 2 (book a flight) they cannot see what they can book i.e. they
-                                //need to see the list of options
+                                //need to see the list of options (viewFlights() method needs to be called so the user
+                                //can see all the flights)
 
 
                                 break;
@@ -98,6 +99,8 @@ public class Main {
                             //Currently, after user looks at their existing bookings, they are asked if they want to
                                     // cancel their flights, should really re-display the main menu to ask them if they
                                     // want to book new, cancel flight etc?
+                                    System.out.println("");
+                                    break;
 
 
 
@@ -107,11 +110,18 @@ public class Main {
                                 flightNum = scanner.nextLine();
 
                                 flightService.cancelFlight(flightService.findFlightByNum(flightNum, airport), customer);
-
-                                viewBookOrCancelValid=true;
+//                                viewBookOrCancelValid=true;
                                 break;
+
+                                //-----case 5 was added to allow the user to quit the program-------
+                            case "5":
+                                System.out.println("Thank you for spending time with us!");
+                                viewBookOrCancelValid = true;
+                                break;
+                                //-------------------------------------
+
                             default:
-                                System.out.println("Must only enter 1, 2 or 3!");
+                                System.out.println("Must only enter 1, 2, 3, 4 or 5!");
                         }
                         System.out.println();
                     }
