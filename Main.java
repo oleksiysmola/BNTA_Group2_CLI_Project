@@ -2,13 +2,14 @@ package com.bntaairport;
 
 import com.bntaairport.airport.Airport;
 import com.bntaairport.customer.Customer;
-import com.bntaairport.email.EmailValidation;
+import com.bntaairport.regex.EmailValidation;
 import com.bntaairport.flight.Flight;
 import com.bntaairport.flight.FlightDestination;
 import com.bntaairport.flight.FlightService;
+import com.bntaairport.regex.PassportNumberValidation;
+import com.bntaairport.regex.PhoneNumberValidation;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -58,8 +59,32 @@ public class Main {
 
                     System.out.println("Enter phone number: ");
                     String phoneNumber = scanner.nextLine();
+                    PhoneNumberValidation phoneNumberValidation = new PhoneNumberValidation();
+                    boolean phoneNumChecker = false;
+                    while (phoneNumChecker == false) {
+                        if (phoneNumberValidation.validatePhoneNumber(phoneNumber) == true) {
+                            phoneNumChecker = true;
+                            break;
+                        } else {
+                            System.out.println("Please enter a valid Phone Number");
+                            phoneNumber = scanner.nextLine();
+                        }
+                    }
+
                     System.out.println("Enter passport number: ");
                     String passportNumber = scanner.nextLine();
+                    PassportNumberValidation passportNumberValidation = new PassportNumberValidation();
+                    boolean passportNumChecker = false;
+                    while (passportNumChecker == false) {
+                        if (passportNumberValidation.validatePassportNumber(passportNumber) == true) {
+                            passportNumChecker = true;
+                            break;
+                        } else {
+                            System.out.println("Please enter a valid Passport Number");
+                            passportNumber = scanner.nextLine();
+                        }
+                    }
+
 
                     Customer customer = new Customer(222, name, email, phoneNumber, passportNumber);
 
@@ -91,11 +116,8 @@ public class Main {
                                 break;
 
                                 case "3":
-                                    System.out.println("Details of your current flight booking are...");
-                                    flightService.viewBookings(airport, customer);
 
-                            //Darshil added this and the viewBookings() method in Flight Service class to show the
-                                    // customer their existing bookings
+                                    flightService.viewBookings(airport, customer);
 
                                     System.out.println("");
                                     break;
@@ -108,7 +130,6 @@ public class Main {
                                 flightNum = scanner.nextLine();
 
                                 flightService.cancelFlight(flightService.findFlightByNum(flightNum, airport), customer);
-//                                viewBookOrCancelValid=true;
                                 break;
 
                                 //-----case 5 was added to allow the user to quit the program-------

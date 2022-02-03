@@ -1,13 +1,7 @@
 package com.bntaairport.flight;
 
 import com.bntaairport.airport.Airport;
-import com.bntaairport.flight.Flight;
 import com.bntaairport.customer.Customer;
-import com.bntaairport.email.EmailValidation;
-import com.bntaairport.flight.Flight;
-import com.bntaairport.flight.FlightDestination;
-
-import java.util.Arrays;
 
 public class FlightService {
 
@@ -77,16 +71,22 @@ public class FlightService {
 
         public void viewBookings(Airport airport, Customer customer) {
                 Flight[] flights = airport.getFlightsArray();
+                boolean hasFlights = false;
                 for (int i = 0; i < flights.length; i++) {
                         Customer[] customers = flights[i].getCustomersOnFlight();
                         for (int j = 0; j < customers.length; j++) {
                                 if (customers[j] == customer) {
+                                        System.out.println("Fetching Flight Information...");
                                         System.out.println("Flight number: " + flights[i].getFlightNumber() +
                                                 ", Departure time: " + flights[i].getDepartureTime() + ", Destination: "
                                                 + flights[i].getDestination());
+                                        hasFlights = true;
                                 }
                         }
 
+                }
+                if (hasFlights == false) {
+                        System.out.println("Sorry, you have no flights booked!");
                 }
 
         }
