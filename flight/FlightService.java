@@ -75,8 +75,19 @@ public class FlightService {
                 return null;
         }
 
-//        public void viewBookings(Airport airport, Customer customer) {
-//                Flight[] flights = airport.getFlightsArray();
-//
-//        }
+        public void viewBookings(Airport airport, Customer customer) {
+                Flight[] flights = airport.getFlightsArray();
+                for (int i = 0; i < flights.length; i++) {
+                        Customer[] customers = flights[i].getCustomersOnFlight();
+                        for (int j = 0; j < customers.length; j++) {
+                                if (customers[j] == customer) {
+                                        System.out.println("Flight number: " + flights[i].getFlightNumber() +
+                                                ", Departure time: " + flights[i].getDepartureTime() + ", Destination: "
+                                                + flights[i].getDestination());
+                                }
+                        }
+
+                }
+
+        }
 }

@@ -68,7 +68,7 @@ public class Main {
                     boolean viewBookOrCancelValid = false;
                     while (viewBookOrCancelValid==false){
                         FlightService flightService = new FlightService();
-                        System.out.println("Enter 1 to view current flights, Enter 2 to book a new flight, Enter 3 to a cancel a flight: ");
+                        System.out.println("Enter 1 to view current flights, Enter 2 to book a new flight, Enter 3 to view your bookings, Enter 4 to a cancel a flight: ");
 
                         String viewBookOrCancel = scanner.nextLine();
                         switch (viewBookOrCancel){
@@ -83,19 +83,25 @@ public class Main {
                                 String flightNum = scanner.nextLine();
 
                                 flightService.bookFlight(flightService.findFlightByNum(flightNum, airport), customer);
+                                //when the user selects 2 (book a flight) they cannot see what they can book i.e. they
+                                //need to see the list of options
 
 
-                                viewBookOrCancelValid=true;
                                 break;
 
-                                //case "3":
-                                //flightService.viewBookings() - might need this to show if the customer has any
-                            //existing bookings, then we could re-display the main menu to ask them if they want to book
-                            //new, cancel flight etc?
+                                case "3":
+                                    System.out.println("Details of your current flight booking are...");
+                                    flightService.viewBookings(airport, customer);
+
+                            //Darshil added this and the viewBookings() method in Flight Service class to show the
+                                    // customer their existing bookings
+                            //Currently, after user looks at their existing bookings, they are asked if they want to
+                                    // cancel their flights, should really re-display the main menu to ask them if they
+                                    // want to book new, cancel flight etc?
 
 
 
-                            case "3":
+                            case "4":
 
                                 System.out.println("Please enter the flight number of the flight you would like to cancel: ");
                                 flightNum = scanner.nextLine();
