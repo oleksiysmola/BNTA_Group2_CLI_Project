@@ -2,6 +2,7 @@ package com.bntaairport;
 
 import com.bntaairport.airport.Airport;
 import com.bntaairport.customer.Customer;
+import com.bntaairport.email.EmailValidation;
 import com.bntaairport.flight.Flight;
 import com.bntaairport.flight.FlightDestination;
 import com.bntaairport.flight.FlightService;
@@ -41,6 +42,20 @@ public class Main {
                     String name = scanner.nextLine();
                     System.out.println("Enter email: ");
                     String email = scanner.nextLine();
+
+                    //------Email Validator-------
+                    EmailValidation emailValidation = new EmailValidation();
+                    boolean emailChecker = false;
+                    while (emailChecker == false) {
+                        if (emailValidation.validateEmail(email) == true) {
+                            emailChecker = true;
+                        } else {
+                            System.out.println("Please enter a valid email");
+                            email = scanner.nextLine();
+                        }
+                    }
+                    //-----------------------------
+
                     System.out.println("Enter phone number: ");
                     String phoneNumber = scanner.nextLine();
                     System.out.println("Enter passport number: ");
