@@ -96,9 +96,7 @@ public class Main {
 
                             //Darshil added this and the viewBookings() method in Flight Service class to show the
                                     // customer their existing bookings
-                            //Currently, after user looks at their existing bookings, they are asked if they want to
-                                    // cancel their flights, should really re-display the main menu to ask them if they
-                                    // want to book new, cancel flight etc?
+
                                     System.out.println("");
                                     break;
 
