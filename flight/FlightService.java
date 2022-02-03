@@ -74,4 +74,9 @@ public class FlightService {
                 }
                 return null;
         }
+
+//        public void viewBookings(Airport airport, Customer customer) {
+//                Flight[] flights = airport.getFlightsArray();
+//
+//        }
 }

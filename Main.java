@@ -87,6 +87,14 @@ public class Main {
 
                                 viewBookOrCancelValid=true;
                                 break;
+
+                                //case "3":
+                                //flightService.viewBookings() - might need this to show if the customer has any
+                            //existing bookings, then we could re-display the main menu to ask them if they want to book
+                            //new, cancel flight etc?
+
+
+
                             case "3":
 
                                 System.out.println("Please enter the flight number of the flight you would like to cancel: ");
